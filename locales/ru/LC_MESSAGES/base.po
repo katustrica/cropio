@@ -1,0 +1,35 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-24 22:58+0300\n"
+"PO-Revision-Date: 2020-08-24 23:01+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Language: ru\n"
+
+#: .\get_data.py:17
+msgid "name"
+msgstr "имя поля"
+
+#: .\get_data.py:18
+msgid "calculated_area"
+msgstr "расчетная площадь"
+
+#: .\get_data.py:19
+msgid "legal_area"
+msgstr "официальная площадь"
+
+#: .\get_data.py:20
+msgid "tillable_area"
+msgstr "обрабатываемая площадь"
