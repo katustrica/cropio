@@ -1,2 +1,4 @@
 config.ini
 .vscode
+*.xlsx
+__pycache__
