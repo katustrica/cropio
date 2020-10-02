@@ -103,5 +103,4 @@ for driver in dicts_for_user:
     df = pd.concat([top_row, df]).reset_index(drop=True)
     dfs.append(df)
 result_df = pd.concat(dfs)
-result_df.to_excel(f'./result-{datetime.now().strftime(r"%d/%m/%Y/%H/%M")}.xlsx', index=False)
-import pdb; pdb.set_trace()
+result_df.to_excel(f'./result-{datetime.now().strftime(r"%d_%m_%Y_%H_%M")}.xlsx', index=False)
