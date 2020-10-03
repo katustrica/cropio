@@ -73,6 +73,7 @@ class TaskSchema(BaseSchema):
     machine_id = fields.Integer()
     implement_id = fields.Integer(missing=None)
     driver_id = fields.Integer(missing=None)
+    work_type_id = fields.Integer()
     start_time = fields.DateTime()
     end_time = fields.DateTime()
     fuel_consumption = fields.Float()

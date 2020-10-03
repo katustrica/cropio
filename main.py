@@ -87,8 +87,13 @@ for task in tasks:
     machine = machines[task.machine_id].name
     driver = get_driver_name(task.driver_id) if task.driver_id else "Нет водителя"
     implement = implements[task.implement_id].name if task.implement_id else 'Нет агрегата'
+
+    work_type = work_types[task.work_type_id]
+    work_type_group = work_type_groups[work_type.work_type_group_id]
+    work_msg_for_user = work_type_group.name + work_type.name
+
     field = get_task_field_mapping(task.id)
-    task_for_user = task.dict_for_user(machine, implement, field)
+    task_for_user = task.dict_for_user(machine, implement, field, work_msg_for_user)
     if driver in dicts_for_user:
         dicts_for_user[driver].append(task_for_user)
     else:
@@ -97,8 +102,8 @@ dfs = []
 for driver in dicts_for_user:
     df = pd.DataFrame.from_dict(dicts_for_user[driver])
     top_row = pd.DataFrame({
-        'id': [driver], 'date': [''], 'machine': [''], 'day_shift': [''], 'night_shift': [''], 'fuel_consumption': [''],
-        'covered_area': [''], 'distance': [''], 'implement': [''], 'fields': ['']
+        'id': [driver], 'date': [''], 'work': [''], 'machine': [''], 'day_shift': [''], 'night_shift': [''],
+        'fuel_consumption': [''], 'covered_area': [''], 'distance': [''], 'implement': [''], 'fields': ['']
     })
     df = pd.concat([top_row, df]).reset_index(drop=True)
     dfs.append(df)

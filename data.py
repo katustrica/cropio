@@ -58,10 +58,11 @@ class Task():
     covered_area: float
     total_distance: float
     work_distance: float
+    work_type_id: int
     driver_id: Optional[int] = None
     implement_id: Optional[int] = None
 
-    def dict_for_user(self, machine_name, implement_name, fields):
+    def dict_for_user(self, machine_name, implement_name, fields, work_msg):
         distance = self.total_distance - self.work_distance
         night_shift = 0
         day_shift = 0
@@ -79,6 +80,7 @@ class Task():
 
         result = {"id": self.id,
                   "date": self.start_time.date().strftime(r"%d/%m/%Y"),
+                  "work": work_msg,
                   "machine": machine_name,
                   "day_shift": day_shift,
                   "night_shift": night_shift,
