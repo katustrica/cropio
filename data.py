@@ -13,30 +13,35 @@ class Field():
 class Driver():
     id: int
     username: str
+    updated_at: datetime
 
 
 @dataclass
 class Machine():
     id: int
     name: str
+    updated_at: datetime
 
 
 @dataclass
 class Implement():
     id: int
     name: str
+    updated_at: datetime
 
 
 @dataclass
 class WorkTypeGroup():
     id: int
     name: str
+    updated_at: datetime
 
 
 @dataclass
 class WorkType():
     id: int
     work_type_group_id: int
+    updated_at: datetime
     name: str
 
 
@@ -46,6 +51,7 @@ class TaskFieldMapping():
     machine_task_id: int
     field_id: int
     covered_area: float
+    updated_at: datetime
 
 
 @dataclass
@@ -54,6 +60,7 @@ class Task():
     machine_id: int
     start_time: datetime
     end_time: datetime
+    updated_at: datetime
     fuel_consumption: float
     covered_area: float
     total_distance: float
@@ -78,17 +85,16 @@ class Task():
                 night_shift += 1
             start_time += timedelta(hours=1)
 
-        result = {"id": self.id,
-                  "date": self.start_time.date().strftime(r"%d/%m/%Y"),
-                  "work": work_msg,
-                  "machine": machine_name,
-                  "day_shift": day_shift,
-                  "night_shift": night_shift,
-                  "fuel_consumption": self.fuel_consumption/10,
-                  "covered_area": self.covered_area,
-                  "distance": distance / 1000 if distance >= 10_000 else 0,
-                  "implement": implement_name,
-                  "fields": fields}
+        result = {"Дата": self.start_time.date().strftime(r"%Y-%m-%d"),
+                  "Дневная смена": day_shift,
+                  "Ночная смена": night_shift,
+                  "Техника": machine_name,
+                  "Агрегат": implement_name,
+                  "Номер полей": fields,
+                  "Операция": work_msg,
+                  "Расход топлива": self.fuel_consumption,
+                  "Выработка (га)": self.covered_area,
+                  "Выработка (км)": distance / 1000 if distance >= 10_000 else 0}
         return result
 
 
