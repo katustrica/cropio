@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cropio-max",
+  "private_key_id": "06363482cb6861fd3a4baa767b913f925cd2994b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDtodmAuazAX0kR\n2Dev2nzRpEk1/ISEBSHljPxnAlnHxNazZBmkdmhOl7a7drUGOSpklYniqkTQrVkA\nw9cnOophUBRrjU9vL1duGqPuV8u2PskJ7aiQVYSz5Zvwb3C09NL56U2XmXrin1+9\nLJJBLoINGPKuOmvnltUx/3wFC+cb+cHYiPpdk5yBsW2xsVTBd48h7paagdU87bYZ\nUyEmX6c7Tk69V53qZIrhlBrkJPHOYmnbDh9O3hwrbiYUnpmEPhLcHIXhHPvM9bn1\nb/lDxmckMfEvqBEcKP2pGNYeN9zkWn3nJXW67a5H3RDTy3xx5TOv+2OLaF9pMU9F\nQhVNg6UnAgMBAAECgf8Lb/pVeC673c0pzKxsFJMoGf1SAClozdTOH/8hvQq3cVci\nFxU4cPMyc1wjNfR6CsCgNbfbUnWnCV28CXMUcrpsJy4nlrUUGx7Wfoo3tK1LH5uD\nvWRz+ZlyfG3Wh193TG6wv8PRFtDQ417wi+WQI35yHGoNvGUryv1xaCtMSlKZz2NZ\n6Q8vQVDPQ3WsJ7oUQEMtIbnctAzqU0v4vIR4TuP8Np5nNFtMHd2/uDPdqGZEMJIi\n0jL2oW29Rinlah/6rw4UXeXnHUA/N4f0+XhTldCu3ftPjPIZBeKA0f+NuagdXRPS\nHqEZZktrHIvEu9qLk/BMvKaDOYNwqlQfGlULqJ0CgYEA/XFPFWATCNy3WJL06oNV\nh8k7j/YXw+lFN6Qblfw1NHFhHmDIAxBF0ncndGi2IwbDY787U1KgWRS46unR1JEg\n3gGBX2oy9olc5BD/2JbufgKKg3vz/p5Uc3xjVaH2ycT6GKBqyVroiBoXo1lP3uyb\nbC6CoS2VAMMjcOVB6fHxaHMCgYEA8AezDW4Rztd4sHyOiPkM+NgWH1FSJSjp5Lwe\n5D00n+gff8oqdtGcJlVBhkVt7UUjoVFIKZb4zw3uGUKEV4hkBZCJOI0nq3Klt+E2\nXA8lB3xrXdT6G8iFkZIM8bxsvgygfV5K5Vz4zGZxJKxy7FnZO6gatk0Zj7InUYBC\nLGB1h30CgYEAmKwEPtUkQkdrb0D/prG8+VJAviU6BbtlBfKm54AJsPDH11vnwOix\nlupOazKU3Z66X0EYhMYWb/MqveBilZFjYjk37Pl1f8wZmA2hgaDSRDhVpoUp420P\nZI4+7JvnpX4yRlmEWo2X3D0TlkQ7+AdCTTXrXRqvUsk6dUy1my8zBH8CgYEAynL0\nBmPMCVWbqd+kqMrGsiwvnIKOcmErxY0V0RP+itDRoIr3ffgVaA+IkKOGsBUclDdm\nUg3QFXN+WzfLP7j+A+OAmX4U83pjY9BEdSkg5kt+k0nLGhvq7HjvCgUPAszLoHIj\nYYklH+FXlMMOu2Kc4sBKp3AoGxb8KrWvGpbRClECgYB1MUIONRt37sTyenaoiVpy\n69cKlXl1aCA6RNwZ9oL7nhTM9FZe6ugN292qajn8OsDrERFGshfzjVKdLb6SD72J\nTw63EwLMj2+Ni9d1C6ut2zcxVASwRrJKktEPMXj6AOfkn1OvTImvECblSfTACWVL\nQjJBMfXV6FBw+APZjEgmog==\n-----END PRIVATE KEY-----\n",
+  "client_email": "musa-pacan@cropio-max.iam.gserviceaccount.com",
+  "client_id": "105014214740060065987",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/musa-pacan%40cropio-max.iam.gserviceaccount.com"
+}

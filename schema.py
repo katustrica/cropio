@@ -12,6 +12,7 @@ class BaseSchema(Schema):
 
 class FieldSchema(BaseSchema):
     name = fields.Str()
+    updated_at = fields.DateTime()
 
     @post_load
     def make_field(self, data, **kwargs):
@@ -29,6 +30,7 @@ class DriverSchema(BaseSchema):
 
 class MachineSchema(BaseSchema):
     name = fields.Str()
+    manufacturer = fields.Str()
     updated_at = fields.DateTime()
 
     @post_load
@@ -79,6 +81,7 @@ class TaskSchema(BaseSchema):
     machine_id = fields.Integer()
     implement_id = fields.Integer(missing=None)
     driver_id = fields.Integer(missing=None)
+    stops_on_road_duration = fields.Integer()
     work_type_id = fields.Integer()
     start_time = fields.DateTime()
     end_time = fields.DateTime()
