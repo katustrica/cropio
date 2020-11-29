@@ -22,6 +22,7 @@ class FieldSchema(BaseSchema):
 class DriverSchema(BaseSchema):
     username = fields.Str()
     updated_at = fields.DateTime()
+    driver = fields.Boolean()
 
     @post_load
     def make_driver(self, data, **kwargs):

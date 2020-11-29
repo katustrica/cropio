@@ -7,6 +7,9 @@ import json
 from typing import List
 import string
 import math
+import os
+import csv
+
 
 import requests
 from marshmallow import Schema, EXCLUDE, post_load, validate
@@ -28,6 +31,10 @@ logging.basicConfig(level=20)
 config = configparser.ConfigParser()
 config.read('config.ini')
 
+
+settings_path = Path(config['settings']['path'])
+drivers_csv = settings_path / Path(config['settings']['drivers_csv'])
+prices_csv = settings_path / Path(config['settings']['prices_csv'])
 
 token = config['token']['maxim']
 
@@ -51,7 +58,6 @@ work_types_path = config_path / Path(config['cache']['work_types'])
 work_type_groups_path = config_path / Path(config['cache']['work_type_groups'])
 machines_path = config_path / Path(config['cache']['machines'])
 implements_path = config_path / Path(config['cache']['implements'])
-driver_excel = config_path / Path(config['cache']['drivers_excel'])
 
 ids = '/ids'
 updated_filter = '?updated_at_gt_eq={}'
@@ -63,7 +69,7 @@ time_filter = '?start_time_gt_eq={}&start_time_lt_eq={}'
 col_user_key = ['Операция', 'Техника', 'Агрегат']
 col_user_show = ['Выработка (га)', 'Выработка (км)', 'Номер полей',
                  'Дневная смена', 'Ночная смена', 'Простой', 'Работа (руб.)', 'Перегон (руб.)']
-col_user_show_sum = ['Дневная смена', 'Ночная смена', 'Работа (руб.)', 'Перегон (руб.)']
+col_user_show_sum = ['Дневная смена', 'Ночная смена', 'Работа (руб.)', 'Выработка (га)', 'Выработка (км)', 'Перегон (руб.)']
 
 
 def get_machines():
@@ -466,6 +472,7 @@ def post_to_google_sheet(strokes, sheet_name):
     requests = {"requests": [{"updateCells": {"range": {"sheetId": sheet._properties['sheetId']}, "fields": "*"}}]}
     sh.batch_update(requests)
     logging.info('Публикую строки')
+
     sheet.update(strokes)
 
     fmt_center_top_bold = cellFormat(
@@ -502,8 +509,21 @@ def post_to_google_sheet(strokes, sheet_name):
 
 def update_drivers_xlsx(dicts_for_user: List[str]):
     df = pd.DataFrame(list(dicts_for_user.keys()))
-    df.to_csv(driver_excel, index=False, encoding='utf-8-sig')
+    df.to_csv(drivers_csv, index=False, encoding='cp1251')
 
+def open_drivers():
+    os.system(f'start {drivers_csv}')
+
+def load_drivers():
+    drivers = get_drivers()
+    drivers_set = (d.username for d in drivers.values() if d.driver)
+    drivers_csv = [['Район']] + [[d] for d in drivers_set]
+    with open(drivers_csv, 'w+', newline='', encoding='cp1251') as f:
+        write = csv.writer(f)
+        write.writerows(drivers_csv)
+
+def open_prices():
+    os.system(f'start {prices_csv}')
 
 def table(start_date: str, finish_date: str):
     dicts_for_user = {}
@@ -539,7 +559,7 @@ def table(start_date: str, finish_date: str):
         else:
             dicts_for_user[driver] = [task_for_user]
 
-    drivers_df_csv = pd.read_csv(driver_excel, sep=';')
+    drivers_df_csv = pd.read_csv(drivers_csv, sep=',', encoding='cp1251')
     for aria_name in drivers_df_csv:
         strokes = []
         dates_max = []
