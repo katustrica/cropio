@@ -8,7 +8,6 @@ from typing import List
 import string
 import math
 import os
-import csv
 
 
 import requests
@@ -33,8 +32,8 @@ config.read('config.ini')
 
 
 settings_path = Path(config['settings']['path'])
-drivers_csv = settings_path / Path(config['settings']['drivers_csv'])
-prices_csv = settings_path / Path(config['settings']['prices_csv'])
+drivers_excel = settings_path / Path(config['settings']['drivers_excel'])
+prices_excel = settings_path / Path(config['settings']['prices_excel'])
 
 token = config['token']['maxim']
 
@@ -509,21 +508,19 @@ def post_to_google_sheet(strokes, sheet_name):
 
 def update_drivers_xlsx(dicts_for_user: List[str]):
     df = pd.DataFrame(list(dicts_for_user.keys()))
-    df.to_csv(drivers_csv, index=False, encoding='cp1251')
+    df.to_excel(drivers_excel, index=False, encoding='cp1251')
 
 def open_drivers():
-    os.system(f'start {drivers_csv}')
+    os.system(f'start {drivers_excel}')
 
 def load_drivers():
     drivers = get_drivers()
     drivers_set = (d.username for d in drivers.values() if d.driver)
-    drivers_csv = [['Район']] + [[d] for d in drivers_set]
-    with open(drivers_csv, 'w+', newline='', encoding='cp1251') as f:
-        write = csv.writer(f)
-        write.writerows(drivers_csv)
+    drivers_data = pd.DataFrame([['Район']] + [[d] for d in drivers_set])
+    drivers_data.to_excel(drivers_excel, index=False, encoding='cp1251', header=False)
 
 def open_prices():
-    os.system(f'start {prices_csv}')
+    os.system(f'start {prices_excel}')
 
 def table(start_date: str, finish_date: str):
     dicts_for_user = {}
@@ -559,14 +556,14 @@ def table(start_date: str, finish_date: str):
         else:
             dicts_for_user[driver] = [task_for_user]
 
-    drivers_df_csv = pd.read_csv(drivers_csv, sep=',', encoding='cp1251')
+    drivers_df_csv = pd.read_excel(drivers_excel, encoding='cp1251')
     for aria_name in drivers_df_csv:
         strokes = []
         dates_max = []
         drirvers_in_aria = [i for i in drivers_df_csv[aria_name].to_list() if (isinstance(i, str) and i in dicts_for_user)]
         for driver in tqdm(sorted(drirvers_in_aria)):
             strokes.append([f'{driver}'])
-            df = pd.DataFrame.from_dict(dicts_for_user[driver])
+            df = pd.DataFrame.from_dict(dicts_for_user[driver]).round(2)
             df['Дата'] = pd.to_datetime(df['Дата'], format='%Y-%m-%d')
             df = df.sort_values(by='Дата')
             df['Дата'] = df['Дата'].dt.strftime('%d/%m/%Y')

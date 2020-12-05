@@ -11,7 +11,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 settings_path = Path(config['settings']['path'])
-prices_csv = settings_path / Path(config['settings']['prices_csv'])
+prices_excel = settings_path / Path(config['settings']['prices_excel'])
 
 
 @dataclass
@@ -89,7 +89,7 @@ class Task():
         task_key = (work_type, machine_manufacturer, implement)
         result = 0
         result_driving = 0
-        prices = pd.read_csv(prices_csv, sep=',', encoding='cp1251')
+        prices = pd.read_excel(prices_excel)
         task_df = (
             prices.loc[(prices['Имя операции'] == work_type)
                        & (prices['Машина'] == machine_manufacturer)
@@ -107,7 +107,6 @@ class Task():
             else:
                 result = ''
             distance = self.total_distance - self.work_distance
-            breakpoint()
             distance = distance / 1000 if distance >= 10_000 else 0
             if distance:
                 if not driving_df.empty:

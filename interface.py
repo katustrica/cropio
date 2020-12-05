@@ -32,10 +32,10 @@ window = sg.Window('Calendar', layout)
 while True:             # Event Loop
     event, values = window.read()
 
-    window['-START_DATE_TEXT-'].update(values['-START_DATE-'][:10])
-    window['-FINISH_DATE_TEXT-'].update(values['-FINISH_DATE-'][:10])
     if event in (None, 'Exit'):
         break
+    window['-START_DATE_TEXT-'].update(values['-START_DATE-'][:10])
+    window['-FINISH_DATE_TEXT-'].update(values['-FINISH_DATE-'][:10])
     if event == '-OPEN_USERS-':
         open_drivers()
     if event == '-LOAD_USERS-':
