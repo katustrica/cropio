@@ -563,7 +563,7 @@ def table(start_date: str, finish_date: str):
         drirvers_in_aria = [i for i in drivers_df_csv[aria_name].to_list() if (isinstance(i, str) and i in dicts_for_user)]
         for driver in tqdm(sorted(drirvers_in_aria)):
             strokes.append([f'{driver}'])
-            df = pd.DataFrame.from_dict(dicts_for_user[driver]).round(2)
+            df = pd.DataFrame.from_dict(dicts_for_user[driver])
             df['Дата'] = pd.to_datetime(df['Дата'], format='%Y-%m-%d')
             df = df.sort_values(by='Дата')
             df['Дата'] = df['Дата'].dt.strftime('%d/%m/%Y')

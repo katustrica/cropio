@@ -103,14 +103,14 @@ class Task():
 
         if not task_df.empty or work_type == 'Перегон':
             if work_type != 'Перегон':
-                result = float(task_df['Стоимость за гектар']) * self.covered_area
+                result = round(float(task_df['Стоимость за гектар']) * self.covered_area, 2)
             else:
                 result = ''
-            distance = self.total_distance - self.work_distance
+            distance = round(self.total_distance - self.work_distance, 2)
             distance = distance / 1000 if distance >= 10_000 else 0
             if distance:
                 if not driving_df.empty:
-                    result_driving = float(driving_df['Стоимость за км']) * distance
+                    result_driving = round(float(driving_df['Стоимость за км']) * distance, 2)
                 else:
                     result_driving = 'Невозможно посчитать'
         else:
@@ -149,8 +149,8 @@ class Task():
                   "Операция": work_msg,
                   "Расход топлива": self.fuel_consumption,
                   "Простой": ttime.strftime('%H:%M:%S', ttime.gmtime(self.stops_on_road_duration)),
-                  "Выработка (га)": self.covered_area,
-                  "Выработка (км)": distance / 1000 if distance >= 10_000 else 0,
+                  "Выработка (га)": round(self.covered_area, 2),
+                  "Выработка (км)": round(distance / 1000, 2) if distance >= 10_000 else 0,
                   "Работа (руб.)": cost[0],
                   "Перегон (руб.)": cost[1],
                   "Водитель (руб.)": driver}
